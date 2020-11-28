@@ -1,18 +1,17 @@
 import React, { FC } from 'react';
-import logo from './logo.svg';
+import { Redirect, Route, Switch } from 'react-router';
+
 import './App.css';
+import Home from './components/Home';
 import UserList from './components/UserList';
 
 const App: FC = () => (
-  <div className="App">
-    <main>
-      <UserList
-        users={[
-          { id: '0', name: 'admin', role: 1 },
-          { id: '1', name: 'ichiro', role: 0 },
-        ]}
-      />
-    </main>
+  <div className="container">
+    <Switch>
+      <Route path="/users" component={UserList} />
+      <Route path="/" component={Home} />
+      <Redirect to="/" />
+    </Switch>
   </div>
 );
 
