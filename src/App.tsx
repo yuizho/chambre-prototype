@@ -7,6 +7,7 @@ import UserList from './components/UserList';
 
 const App: FC = () => (
   <div className="container">
+    <h1>Title</h1>
     <Switch>
       <Route path="/users" component={UserList} />
       <Route path="/" component={Home} />

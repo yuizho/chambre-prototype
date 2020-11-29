@@ -1,8 +1,21 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 const Home: FC<{}> = () => (
   <>
-    <p>hello</p>
+    <div>
+      <ul>
+        <li>
+          <Link to={'/'}>home</Link>
+        </li>
+        <li>
+          <Link to={'/users'}>users</Link>
+        </li>
+        <li>
+          <Link to={'/users/1'}>users/1</Link>
+        </li>
+      </ul>
+    </div>
   </>
 );
 
