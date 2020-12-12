@@ -6,9 +6,6 @@ const Home: FC<{}> = () => (
     <div>
       <ul>
         <li>
-          <Link to={'/'}>home</Link>
-        </li>
-        <li>
           <Link to={'/users'}>users</Link>
         </li>
         <li>
