@@ -6,6 +6,7 @@ import {
   Switch,
   useParams,
 } from 'react-router-dom';
+import useFetchMembers from '../hooks/use-fetch-members';
 
 type Role = 0 | 1;
 
@@ -20,13 +21,6 @@ class User {
   }
 }
 
-const data = {
-  users: [
-    { id: '1', name: 'admin', role: 1 },
-    { id: '2', name: 'normal', role: 0 },
-  ],
-};
-
 const UserList: FC<RouteComponentProps> = ({ match }) => {
   return (
     <BrowserRouter>
@@ -39,24 +33,26 @@ const UserList: FC<RouteComponentProps> = ({ match }) => {
 };
 
 const AllUserList: FC<{}> = () => {
-  const listItems = data.users.map((user) => (
-    <li key={user.id}>
-      {user.name}@{user.role}
+  const { users, isLoading } = useFetchMembers();
+
+  const listItems = users.map((user, index) => (
+    <li key={index}>
+      <img style={{ width: '150px', height: '150px' }} src={user} />
     </li>
   ));
-  return <ul>{listItems}</ul>;
+  return <>{isLoading ? <div>isLoading...</div> : <ul>{listItems}</ul>}</>;
 };
 
 const UserListWithFilter: FC<{}> = () => {
   const { id } = useParams<{ id: string }>();
-  const listItems = data.users
-    .filter((user) => user.id === id)
-    .map((user) => (
-      <li key={user.id}>
-        {user.name}@{user.role}
-      </li>
-    ));
-  return <ul>{listItems}</ul>;
+  const { users, isLoading } = useFetchMembers(parseInt(id));
+
+  const listItems = users.map((user, index) => (
+    <li key={index}>
+      <img style={{ width: '150px', height: '150px' }} src={user} />
+    </li>
+  ));
+  return <>{isLoading ? <div>isLoading...</div> : <ul>{listItems}</ul>}</>;
 };
 
 export default UserList;
