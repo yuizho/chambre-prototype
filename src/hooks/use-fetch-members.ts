@@ -5,7 +5,7 @@ type Result = {
   isLoading: boolean;
 };
 
-const useFetchMembers = (id: number = 5): Result => {
+const useFetchMembers = (id = 5): Result => {
   const [isLoading, setLoading] = useState(false);
   const [users, setUsers] = useState<string[]>([]);
 
@@ -13,11 +13,11 @@ const useFetchMembers = (id: number = 5): Result => {
     const fetchUsers = async (): Promise<void> => {
       setLoading(true);
 
-      const result = await fetch(
+      const result: string[] = await fetch(
         `https://dog.ceo/api/breeds/image/random/${id}`,
       )
         .then((response) => response.json())
-        .then((data) => data.message);
+        .then((data: { message: string[] }) => data.message);
       console.log(result);
       setUsers(result);
 
