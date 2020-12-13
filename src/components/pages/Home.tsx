@@ -11,6 +11,9 @@ const Home: FC = () => (
         <li>
           <Link to="/users/1">users/1</Link>
         </li>
+        <li>
+          <Link to="/apply">apply</Link>
+        </li>
       </ul>
     </div>
   </>
